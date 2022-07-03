@@ -1,0 +1,54 @@
+
+p
+{
+display: block;
+margin-left: auto;
+margin-right: auto;
+align-items: center;
+justify-items: center;
+text-align: center;
+
+}
+#l
+{
+    display: flex;
+    justify-content: center;
+}
+body
+{
+   background-color:aliceblue; 
+}
+#yt
+{
+    
+}
+#ij
+{
+    background-color:white;
+    border-color: black;
+    background-origin: padding-box;
+    padding: 2%;
+    border-top-left-radius: 0.2cm;
+    border-top-right-radius: 0.2cm;
+    border-bottom-left-radius: 0.2cm;
+    border-bottom-right-radius: 0.2cm;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width:40%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#de
+{
+    display:block;
+    display: flex;
+    justify-content: center;
+    
+   
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
