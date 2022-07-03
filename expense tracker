@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expense Tracker</title>
+        <link rel="stylesheet" href="sr.css">
+    </head>
+    <body>
+        <main>
+            <h1 ></h1>
+            <div id="ij">
+                <h2 id="l">A Simple Expense app</h2>
+                <p id="i">Your current dues:</p>
+                <p id="nl">You owe</p><p id="owe" style="color:red">0</p>
+                <p id="f">You need to get back</p><p id="recei" style="color:green">0</p>
+            
+            <div id="de">
+            <select id="options" name="Choose an Option" required>
+                <option>PAY</option>
+                <option>RECEIVE</option>
+            </select>
+            <input type="text" placeholder="Enter Name" id="n" required>
+            <input type="number" placeholder="Enter Amount" min="0" id="w"required>
+            <button id="but">Add</button>
+
+        </div>
+            <div id="ne">
+            </div>
+            </div>
+        </main>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseApp = firebase.initializeApp({
+            apiKey: "AIzaSyAvEX4_BUaVMaYzP_khRXMLArh5zeV_Rp4",
+  authDomain: "basics-d630b.firebaseapp.com",
+  databaseURL: "https://basics-d630b-default-rtdb.firebaseio.com",
+  projectId: "basics-d630b",
+  storageBucket: "basics-d630b.appspot.com",
+  messagingSenderId: "86204908304",
+  appId: "1:86204908304:web:343cf2a9e2ea32b4a29b95",
+  measurementId: "G-7KRWKYRKTD"
+});
+
+const db = firebaseApp.firestore();
+const auth = firebaseApp.auth();
+        let pays=0;
+            let rece=0;
+        document.getElementById("but").onclick=function()
+        {
+
+            if(document.getElementById("n").value!=""&&document.getElementById("w").value!="")
+            {
+                let y=document.getElementById("options");
+                let opt=document.getElementById("options").options[y.selectedIndex].text;
+            let name=document.getElementById("n").value;
+            let amou=Number(document.getElementById("w").value);
+            let date=new Date().getDate()+"/"+(new Date().getMonth()+1);
+            db.collection('users')
+            .add({
+                Option:opt,
+                Name:name,
+                Amount:amou,
+                Date:date
+            })
+            .then((docRef) => {
+        console.log("Information Saved: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error ", error);
+    });
+    db.collection('users')
+    .get()
+    .then((data) => {
+        console.log(data.docs.map((item) => {
+            return{...item.data()};
+        }))
+    })
+            /*let pi=document.createElement("div");
+            let r=new Date().getTime().toString();
+            pi.setAttribute("id",r);
+            
+            console.log(pi.id);
+            let y=document.getElementById("options");
+            pi.innerHTML=pi.innerHTML+y.options[y.selectedIndex].text;    
+            pi.innerHTML=pi.innerHTML+" "+document.getElementById("n").value;
+            pi.innerHTML=pi.innerHTML+" "+ "Rs "+document.getElementById("w").value;
+            if(y.options[y.selectedIndex].text=="PAY")
+            {
+                pays=pays+Number(document.getElementById("w").value);
+            }
+            else if(y.options[y.selectedIndex].text=="RECEIVE")
+            {
+                rece=rece+Number(document.getElementById("w").value);
+            }
+            document.getElementById("owe").innerHTML=pays;
+            document.getElementById("recei").innerHTML=rece;
+            console.log(pays);
+            console.log(rece);
+            pi.innerHTML=pi.innerHTML+" ref"+"  "+new Date().getDate()+"/"+(new Date().getMonth()+1);
+            let s=document.getElementById("ne");
+            s.appendChild(pi);*/
+           
+        }
+        else
+        {
+            alert("Please enter value");
+        }
+        }
+        
+    </script>
+    </html>
